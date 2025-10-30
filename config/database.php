@@ -2,6 +2,8 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
+use PHPAuth\Config as PHPAuthConfig;
+use PHPAuth\Auth as PHPAuth;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
@@ -15,6 +17,10 @@ try{
     $connection = new PDO("mysql:host=$host;dbname=$db_name", $db_username, $db_password);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    $config = new PHPAuthConfig($connection);
+    $auth = new PHPAuth($connection, $config);
+
     echo "Connesso al database: $db_name \n";
 } catch(Error $e){
     echo "Errore: " . $e->getMessage();

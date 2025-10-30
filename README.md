@@ -7,3 +7,7 @@ composer require phroute/phroute
 ```
 composer require vlucas/phpdotenv
 ```
+#### Libreria per authentication: [PHPAuth](https://github.com/PHPAuth/PHPAuth)
+```
+composer require phpauth/phpauth
+```
