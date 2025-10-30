@@ -6,6 +6,8 @@ use Phroute\Phroute\RouteCollector;
 use PHPAuth\Config as PHPAuthConfig;
 use PHPAuth\Auth as PHPAuth;
 
+session_start();
+
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -21,8 +23,7 @@ $router->get('/login', function () {
 });
 
 $router->post('/login', function () {
-    session_start();
-    
+
     require_once __DIR__ . '/../config/database.php';
     require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -46,10 +47,15 @@ $router->post('/login', function () {
 
             // renderizzare alla pagina richiesta, dopo il login
             $_SESSION['auth_success'] = 'Accesso effettuato!';
-            header('Location: /');
+            header('Location: /dashboard');
             exit;
         }
     }
+});
+
+$router->get('/dashboard', function () {
+    require_once __DIR__ . '/../setting/middleware/auth.php';
+    require_once __DIR__ . '/../views/admin/dashboard.php';
 });
 
 

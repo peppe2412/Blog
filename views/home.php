@@ -1,13 +1,15 @@
 <?php
 session_start();
-$success = $_SESSION['auth_success'] ?? null;
-unset($_SESSION['auth_success']);
+
+$alert = $_SESSION['alert'] ?? null;
+unset($_SESSION['alert']);
+
 ob_start();
 ?>
 
 <h1>Home</h1>
-<?php if ($success): ?>
-    <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+<?php if ($alert): ?>
+    <div class="alert alert-danger"><?= htmlspecialchars($alert) ?></div>
 <?php endif; ?>
 
 <?php
