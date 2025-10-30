@@ -21,7 +21,7 @@ try{
     $config = new PHPAuthConfig($connection);
     $auth = new PHPAuth($connection, $config);
 
-    echo "Connesso al database: $db_name \n";
+    // echo "Connesso al database: $db_name \n";
 } catch(Error $e){
     echo "Errore: " . $e->getMessage();
 }
