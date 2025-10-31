@@ -1,5 +1,9 @@
 @import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+.img_404{
+    width: 300px;
+}
+
 footer{
     margin-top: 400px;
 }

@@ -7,7 +7,10 @@ ob_clean();
         <div class="col-12 col-lg-8 text-center">
             <h1>404</h1>
             <h2>Pagina non trovata!</h2>
-            <a href="/">Torna alla home</a>
+            <img class="img_404" src="https://i.etsystatic.com/36104253/r/il/312d48/5128189533/il_fullxfull.5128189533_t29w.jpg" alt="LOL troll">
+            <div class="mt-4">
+                <a href="/">Torna alla home</a>
+            </div>
         </div>
     </div>
 </section>
