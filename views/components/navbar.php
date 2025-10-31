@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -16,7 +17,9 @@
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <?php if(isset($_SESSION['auth_hash'])): ?>
+                    <a class="nav-link" href="/dashboard">Area riservata</a>
+                    <?php endif; ?>
                 </li>
             </ul>
         </div>

@@ -3,12 +3,18 @@ session_start();
 $error = $_SESSION['login_error'] ?? null;
 unset($_SESSION['login_error']);
 
+$logout = $_SESSION['alert_logout'] ?? null;
+unset($_SESSION['alert_logout']);
+
 ob_start();
 ?>
 
 <section class="container py-5">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-4">
+            <?php if ($logout): ?>
+                <div class="alert alert-success"><?= htmlspecialchars($logout) ?></div>
+            <?php endif; ?>
             <?php if ($error): ?>
                 <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>

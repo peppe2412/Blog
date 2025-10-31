@@ -8,6 +8,7 @@ ob_start();
 ?>
 
 <h1>Dashboard</h1>
+<a href="/logout">Logout</a>
 <?php if ($success): ?>
     <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
 <?php endif; ?>

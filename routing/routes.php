@@ -53,11 +53,31 @@ $router->post('/login', function () {
     }
 });
 
+$router->get('/logout', function () {
+    require_once __DIR__ . '/../config/database.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
+
+    $config = new PHPAuthConfig($connection);
+    $auth = new PHPAuth($connection, $config);
+
+    if (!empty($_SESSION['auth_hash'])) {
+        $auth->logout($_SESSION['auth_hash']);
+        unset($_SESSION['auth_hash']);
+        $_SESSION['alert_logout'] = 'Disconnessione effettuata!';
+        header('Location: /login');
+        exit;
+    }
+});
+
 $router->get('/dashboard', function () {
     require_once __DIR__ . '/../setting/middleware/auth.php';
     require_once __DIR__ . '/../views/admin/dashboard.php';
 });
 
+$router->get('/posts/create', function () {
+    require_once __DIR__ . '/../setting/middleware/auth.php';
+    require_once __DIR__ . '/../views/admin/posts/create.php';
+});
 
 try {
     $dispatcher = new Dispatcher($router->getData());
