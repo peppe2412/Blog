@@ -1,9 +1,107 @@
-@import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
-.img_404{
-    width: 300px;
+* {
+  font-family: "Nunito", sans-serif;
 }
 
-footer{
-    margin-top: 400px;
+body {
+  background-color: #f2f2f2;
+}
+
+#navbar {
+  background-color: #f2f2f2;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+}
+
+.posts-container {
+  padding-top: 150px;
+  margin-bottom: 110px;
+}
+
+.mainPostTitleEffect {
+  display: inline-flex;
+  position: relative;
+}
+
+.mainPostTitleEffect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 25px;
+  width: 0;
+  height: 50%;
+  z-index: -1;
+  background-color: rgb(246, 246, 54);
+  animation: effect-main-post-title 2s forwards;
+}
+
+@keyframes effect-main-post-title {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.otherPostTitle {
+  position: relative;
+  display: inline-flex;
+}
+
+.otherPostTitle::after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  left: 0;
+  right: 0;
+  top: 15px;
+  width: 0;
+  z-index: -1;
+  background-color: rgb(239, 144, 80);
+  animation: effect-other-title 2s forwards;
+}
+
+@keyframes effect-other-title {
+    from {width: 0;}
+    to{width: 100%;}
+}
+
+.subtititle-othersPosts{
+    font-size: larger;
+}
+
+.card {
+  max-width: max-content;
+}
+
+.card a {
+  text-decoration: none;
+  color: black;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.card-others-posts {
+  min-width: fit-content;
+}
+
+.card-others-posts:hover{
+    transition: 0.4s;
+    transform: scale(1.1);
+}
+
+.img_404 {
+  width: 300px;
+}
+
+footer {
+  margin-top: 400px;
 }

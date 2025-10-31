@@ -17,7 +17,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ob_start();
 ?>
 
-<h1>Home</h1>
+
 <?php if ($alert): ?>
     <div class="alert alert-danger"><?= htmlspecialchars($alert) ?></div>
 <?php endif; ?>
@@ -25,8 +25,7 @@ ob_start();
     <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
 <?php endif; ?>
 
-
-<main class="container-fluid">
+<main class="container-fluid posts-container">
     <div class="row">
         <?php if ($posts): ?>
             <?php
@@ -35,11 +34,13 @@ ob_start();
             ?>
         <?php endif; ?>
         <div class="col-12 col-lg-12">
-            <h2>Post principale</h2>
-            <a href="/posts/detail/<?= urlencode($main['title']) ?>">
-                <div class="card mb-3" style="max-width: 540px;">
+            <h2 class="mb-4 mainPostTitleEffect display-5">
+                Post principale
+            </h2>
+            <div class="card mb-3 shadow">
+                <a href="/posts/detail/<?= urlencode($main['title']) ?>">
                     <div class="row g-0">
-                        <div class="col-md-4">
+                        <div class="col-12 col-lg-12">
                             <?php if (!empty($main['image'])): ?>
                                 <img src="/public/uploads/<?= htmlspecialchars($main['image']); ?>" class="img-fluid rounded-start" alt="...">
                             <?php endif; ?>
@@ -53,33 +54,36 @@ ob_start();
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </div>
 </main>
 
 <section class="container">
-    <div class="row justify-content-center">
+    <div class="mb-3">
+        <h2 class="otherPostTitle">Altri posts</h2>
+        <h4 class="subtititle-othersPosts">Sfoglia gli altri posts</h4>
+    </div>
+    <div class="row justify-content-center gap-3">
         <?php if ($others): ?>
             <?php foreach ($others as $post): ?>
-                <div class="col-12 col-lg-4">
-                    <a href="/posts/detail/<?= urlencode($post['title']) ?>">
-                        <div class="d-flex justify-content-center">
-                            <div class="card" style="width: 18rem;">
+                <div class="col-12 col-lg-2">
+                    <div class="d-flex justify-content-center">
+                        <div class="card shadow card-others-posts">
+                            <a href="/posts/detail/<?= urlencode($post['title']) ?>">
                                 <?php if (!empty($post['image'])): ?>
                                     <img src="/public/uploads/<?= htmlspecialchars($post['image']); ?>" class="card-img-top" alt="...">
                                 <?php endif; ?>
                                 <div class="card-body">
                                     <h3 class="card-title"><?= htmlspecialchars($post['title']) ?></h3>
                                     <h5 class="card-title"><?= htmlspecialchars($post['subtitle']) ?></h5>
-                                    <p class="card-text"><?= htmlspecialchars($post['body']) ?></p>
                                     <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($post['created_at']))) ?></small>
                                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
