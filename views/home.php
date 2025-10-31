@@ -25,10 +25,44 @@ ob_start();
     <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
 <?php endif; ?>
 
+
+<main class="container-fluid">
+    <div class="row">
+        <?php if ($posts): ?>
+            <?php
+            $main = $posts[0];
+            $others = array_slice($posts, 1);
+            ?>
+        <?php endif; ?>
+        <div class="col-12 col-lg-12">
+            <h2>Post principale</h2>
+            <a href="/posts/detail/<?= urlencode($main['title']) ?>">
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <?php if (!empty($main['image'])): ?>
+                                <img src="/public/uploads/<?= htmlspecialchars($main['image']); ?>" class="img-fluid rounded-start" alt="...">
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title"><?= htmlspecialchars($main['title']) ?></h3>
+                                <h5 class="card-title"><?= htmlspecialchars($main['subtitle']) ?></h5>
+                                <p class="card-text"><?= htmlspecialchars($main['body']) ?></p>
+                                <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($main['created_at']))) ?></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</main>
+
 <section class="container">
     <div class="row justify-content-center">
-        <?php if ($posts): ?>
-            <?php foreach ($posts as $post): ?>
+        <?php if ($others): ?>
+            <?php foreach ($others as $post): ?>
                 <div class="col-12 col-lg-4">
                     <a href="/posts/detail/<?= urlencode($post['title']) ?>">
                         <div class="d-flex justify-content-center">
