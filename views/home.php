@@ -40,6 +40,7 @@ ob_start();
                                     <h3 class="card-title"><?= htmlspecialchars($post['title']) ?></h3>
                                     <h5 class="card-title"><?= htmlspecialchars($post['subtitle']) ?></h5>
                                     <p class="card-text"><?= htmlspecialchars($post['body']) ?></p>
+                                    <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($post['created_at']))) ?></small>
                                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                                 </div>
                             </div>

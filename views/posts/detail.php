@@ -25,6 +25,7 @@ ob_start();
                 <div>
                     <p><?= htmlspecialchars($post['body']) ?></p>
                 </div>
+                <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($post['created_at']))) ?></small>
             </div>
         </div>
     </section>
