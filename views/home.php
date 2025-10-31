@@ -29,21 +29,23 @@ ob_start();
     <div class="row justify-content-center">
         <?php if ($posts): ?>
             <?php foreach ($posts as $post): ?>
-                <div class="col-12 col-lg-4">
-                    <div class="d-flex justify-content-center">
-                        <div class="card" style="width: 18rem;">
-                            <?php if (!empty($post['image'])): ?>
-                                <img src="/public/uploads/<?= htmlspecialchars($post['image']); ?>" class="card-img-top" alt="...">
-                            <?php endif; ?>
-                            <div class="card-body">
-                                <h3 class="card-title"><?= htmlspecialchars($post['title']) ?></h3>
-                                <h5 class="card-title"><?= htmlspecialchars($post['subtitle']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($post['body']) ?></p>
-                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                <a href="/posts/detail/<?= urlencode($post['title']) ?>">
+                    <div class="col-12 col-lg-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="card" style="width: 18rem;">
+                                <?php if (!empty($post['image'])): ?>
+                                    <img src="/public/uploads/<?= htmlspecialchars($post['image']); ?>" class="card-img-top" alt="...">
+                                <?php endif; ?>
+                                <div class="card-body">
+                                    <h3 class="card-title"><?= htmlspecialchars($post['title']) ?></h3>
+                                    <h5 class="card-title"><?= htmlspecialchars($post['subtitle']) ?></h5>
+                                    <p class="card-text"><?= htmlspecialchars($post['body']) ?></p>
+                                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             <?php endforeach; ?>
         <?php else: ?>
             <h3>Non ci sono posts</h3>
