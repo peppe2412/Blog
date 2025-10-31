@@ -17,6 +17,26 @@ body {
   width: 100%;
 }
 
+.logo-container{
+  padding-top: 150px;
+}
+
+.logo{
+  width: 400px;
+  animation: logo-effect 4s ease;
+}
+
+@keyframes logo-effect{
+  from{
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .posts-container {
   padding-top: 150px;
   margin-bottom: 110px;
@@ -49,12 +69,12 @@ body {
   }
 }
 
-.otherPostTitle {
+.otherPostTitleEffect {
   position: relative;
   display: inline-flex;
 }
 
-.otherPostTitle::after {
+.otherPostTitleEffect::after {
   content: "";
   position: absolute;
   height: 50%;

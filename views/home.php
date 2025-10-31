@@ -25,6 +25,12 @@ ob_start();
     <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
 <?php endif; ?>
 
+<header class="logo-container">
+    <div class="d-flex justify-content-center">
+        <img class="logo" src="/public/media//logo.png" alt="Logo Blog">
+    </div>
+</header>
+
 <main class="container-fluid posts-container">
     <div class="row">
         <?php if ($posts): ?>
@@ -34,7 +40,7 @@ ob_start();
             ?>
         <?php endif; ?>
         <div class="col-12 col-lg-12">
-            <h2 class="mb-4 mainPostTitleEffect display-5">
+            <h2 class="mb-4 display-5" id="mainTitle">
                 Post principale
             </h2>
             <div class="card mb-3 shadow">
