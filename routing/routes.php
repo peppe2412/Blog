@@ -79,6 +79,73 @@ $router->get('/posts/create', function () {
     require_once __DIR__ . '/../views/admin/posts/create.php';
 });
 
+$router->post('/posts/store', function() {
+    require_once __DIR__ . '/../config/database.php';
+
+    $title = trim($_POST['title'] ?? '');
+    $subtitle = trim($_POST['subtitle'] ?? '');
+    $body = trim($_POST['body'] ?? '');
+    if ($title == '' || $subtitle == '' || $body == ''){
+        $_SESSION['alert'] = 'Campi vuoti';
+        header('Location: /posts/create');
+        exit;
+    }
+
+    // Immagini - salvare le immagini nella cartella uploads
+    $uploads_directory = __DIR__ . '/../public/uploads';
+    if(!file_exists($uploads_directory)){
+        mkdir($uploads_directory, 0777, true);
+    }
+
+    // Inizializzare i nomi dei file 
+    $file_name = null;
+
+    // verifica se è stato caricato un file
+    if(!empty($_FILES['image']['name'])){
+        // dettagli del file
+        $file_temporany = $_FILES['image']['tmp_name'];
+        $file_origin = basename($_FILES['image']['name']);
+        $exstension = strtolower(pathinfo($file_origin, PATHINFO_EXTENSION));
+
+        $allowed = ['png', 'jpg', 'jpeg'];
+
+        if(in_array($exstension, $allowed)){
+            // creare un nome unico per evitare conflitti
+            $file_name = uniqid('post_') .  '.' . $exstension;
+            $filePath = $uploads_directory . '/' . $file_name;
+
+            if(!move_uploaded_file($file_temporany, $filePath)){
+                $_SESSION['alert'] = 'Si è verificato un errore durante  il caricamento!';
+                header('Location: /posts/create');
+                exit;
+            }
+        } else {
+            $_SESSION['alert'] = 'Formato dell\'immagine non supportato';
+            header('Location: /posts/create');
+            exit;
+        }
+    }
+
+    // Salvare il post nel database
+    $stmt = $connection->prepare("INSERT INTO posts (title, subtitle, body, image) VALUES (:title, :subtitle, :body, :image)");
+
+    if($stmt->execute([
+        ':title' => $title,
+        ':subtitle' => $subtitle,
+        ':body' => $body,
+        ':image' => $file_name
+    ])){
+        $_SESSION['success'] = 'Post creato con successo!';
+        header('Location: /');
+        exit;
+    } else{
+        $_SESSION['alert'] = 'Si è verificato un errore';
+        header('Location: /posts/create');
+        exit;
+    }
+
+});
+
 try {
     $dispatcher = new Dispatcher($router->getData());
     $response = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $path);
