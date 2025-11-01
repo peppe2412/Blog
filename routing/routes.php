@@ -84,8 +84,15 @@ $router->post('/posts/store', function () {
 
     $title = trim($_POST['title'] ?? '');
     $subtitle = trim($_POST['subtitle'] ?? '');
-    $body = trim($_POST['body'] ?? '');
-    if ($title == '' || $subtitle == '' || $body == '') {
+
+    // Il body non deve essere in trim cosi da non rompere il post generato con il Rich Text Editor
+    $body = $_POST['body'];
+
+    // Rimuove i tags non consentiti, lasciando solo quelli consentiti dall' allowed_tags
+    $allowed_tags = '<h1><h2><h3><h4><p><a><ul><ol><li><br><strong><em><b><i><u><img><blockquote><div>';
+    $safe_body = strip_tags($body, $allowed_tags);
+
+    if ($title == '' || $subtitle == '' || $safe_body == '') {
         $_SESSION['alert'] = 'Campi vuoti';
         header('Location: /posts/create');
         exit;
@@ -132,7 +139,7 @@ $router->post('/posts/store', function () {
     if ($stmt->execute([
         ':title' => $title,
         ':subtitle' => $subtitle,
-        ':body' => $body,
+        ':body' => $safe_body,
         ':image' => $file_name
     ])) {
         $_SESSION['success'] = 'Post creato con successo!';
@@ -147,9 +154,9 @@ $router->post('/posts/store', function () {
 
 $router->get('/posts/detail/{title}', function ($title) use ($connection) {
     require_once __DIR__ . '/../config/database.php';
-    
+
     $title =  urldecode($title);
-    
+
 
     $stmt = $connection->prepare("SELECT * FROM posts WHERE title = :title LIMIT 1");
     $stmt->bindParam(':title', $title);

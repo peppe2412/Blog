@@ -23,7 +23,7 @@ ob_start();
                     </div>
                 <?php endif; ?>
                 <div>
-                    <p><?= htmlspecialchars($post['body']) ?></p>
+                    <p><?= $post['body'] ?></p>
                 </div>
                 <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($post['created_at']))) ?></small>
             </div>

@@ -11,3 +11,5 @@ composer require vlucas/phpdotenv
 ```
 composer require phpauth/phpauth
 ```
+
+#### Usato, per la creazione dei post, il text editor [TinyMCE](https://www.tiny.cloud/tinymce/)

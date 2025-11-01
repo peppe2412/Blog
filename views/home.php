@@ -31,7 +31,7 @@ ob_start();
     </div>
 </header>
 
-<main class="container-fluid posts-container">
+<main class="container posts-container">
     <div class="row">
         <?php if ($posts): ?>
             <?php
@@ -43,25 +43,29 @@ ob_start();
             <h2 class="mb-4 display-5" id="mainTitle">
                 Post principale
             </h2>
-            <div class="card mb-3 shadow">
-                <a href="/posts/detail/<?= urlencode($main['title']) ?>">
-                    <div class="row g-0">
-                        <div class="col-12 col-lg-12">
-                            <?php if (!empty($main['image'])): ?>
-                                <img src="/public/uploads/<?= htmlspecialchars($main['image']); ?>" class="img-fluid rounded-start" alt="...">
-                            <?php endif; ?>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h3 class="card-title"><?= htmlspecialchars($main['title']) ?></h3>
-                                <h5 class="card-title"><?= htmlspecialchars($main['subtitle']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($main['body']) ?></p>
-                                <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($main['created_at']))) ?></small>
+            <?php if (!$main): ?>
+                <h3>Nessun post</h3>
+            <?php else: ?>
+                <div class="card mb-3 shadow">
+                    <a href="/posts/detail/<?= urlencode($main['title']) ?>">
+                        <div class="row g-0">
+                            <div class="col-12 col-lg-12">
+                                <?php if (!empty($main['image'])): ?>
+                                    <img src="/public/uploads/<?= htmlspecialchars($main['image']); ?>" class="img-fluid rounded-start" alt="...">
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h3 class="card-title"><?= htmlspecialchars($main['title']) ?></h3>
+                                    <h5 class="card-title"><?= htmlspecialchars($main['subtitle']) ?></h5>
+                                    <p class="card-text"><?= $main['body'] ?></p>
+                                    <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($main['created_at']))) ?></small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </main>
