@@ -73,7 +73,7 @@ ob_start();
 
 <section class="container">
     <div class="mb-3">
-        <h2 class="otherPostTitle otherPostTitleEffect">Altri posts</h2>
+        <h2 class="otherPostTitle">Altri posts</h2>
         <h4 class="subtititle-othersPosts">Sfoglia gli altri posts</h4>
     </div>
     <div class="row justify-content-center gap-3">

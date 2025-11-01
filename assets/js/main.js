@@ -12,4 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
       navbar.classList.remove("shadow-sm");
     }
   });
+
+  let othersPostsTitle = document.querySelectorAll(".otherPostTitle");  
+
+  let observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("otherPostTitleEffect");
+        }
+      });
+    },
+    {
+      threshold: 1,
+    }
+  );
+
+  othersPostsTitle.forEach((otherTitle)=> observer.observe(otherTitle))
 });
