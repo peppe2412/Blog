@@ -17,13 +17,17 @@ body {
   width: 100%;
 }
 
-.logo-container{
+/* .logo-container{
   padding-top: 150px;
 }
 
 .logo{
   width: 400px;
   animation: logo-effect 4s ease;
+} */
+
+.span-messages{
+  margin-top: 10rem;
 }
 
 @keyframes logo-effect{
@@ -37,8 +41,8 @@ body {
   }
 }
 
-.posts-container {
-  padding-top: 150px;
+.post-main-container {
+  padding-top: 50px;
   margin-bottom: 110px;
 }
 

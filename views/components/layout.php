@@ -12,11 +12,11 @@
 
 <body>
 
-    <?php
-    include_once __DIR__ . '/navbar.php';
-    echo $slot;
-    include_once __DIR__ . '/footer.php';
-    ?>
+    <?php include_once __DIR__ . '/navbar.php'; ?>
+    <main>
+        <?php echo $slot ?>
+    </main>
+    <?php include_once __DIR__ . '/footer.php'; ?>
 
     <script src="/assets//js//main.js" type="module"></script>
 </body>

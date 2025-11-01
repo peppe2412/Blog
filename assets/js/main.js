@@ -12,27 +12,4 @@ document.addEventListener("DOMContentLoaded", () => {
       navbar.classList.remove("shadow-sm");
     }
   });
-
-  let mainTitlePost = document.querySelector("#mainTitle");
-  let otherTitlePost = document.querySelectorAll(".otherPostTitle");
-
-  let observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          if (entry.target.id == "mainTitle") {
-            entry.target.classList.add("mainPostTitleEffect");
-          } else {
-            entry.target.classList.add("otherPostTitleEffect");
-          }
-        }
-      });
-    },
-    { threshold: 1 }
-  );
-
-  if(mainTitlePost){
-    observer.observe(mainTitlePost)
-  }
-  otherTitlePost.forEach((otherTitle) => observer.observe(otherTitle));
 });

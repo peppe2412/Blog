@@ -17,21 +17,22 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ob_start();
 ?>
 
-
-<?php if ($alert): ?>
-    <div class="alert alert-danger"><?= htmlspecialchars($alert) ?></div>
-<?php endif; ?>
-<?php if ($success): ?>
-    <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-<?php endif; ?>
-
+<section class="span-messages">
+    <?php if ($alert): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($alert) ?></div>
+    <?php endif; ?>
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+    <?php endif; ?>
+</section>
+<!-- 
 <header class="logo-container">
     <div class="d-flex justify-content-center">
         <img class="logo" src="/public/media//logo.png" alt="Logo Blog">
     </div>
-</header>
+</header> -->
 
-<main class="container posts-container">
+<main class="container post-main-container">
     <div class="row">
         <?php if ($posts): ?>
             <?php
@@ -40,7 +41,7 @@ ob_start();
             ?>
         <?php endif; ?>
         <div class="col-12 col-lg-12">
-            <h2 class="mb-4 display-5" id="mainTitle">
+            <h2 class="mb-4 display-5 mainPostTitleEffect" id="mainTitle">
                 Post principale
             </h2>
             <?php if (!$main): ?>
@@ -72,7 +73,7 @@ ob_start();
 
 <section class="container">
     <div class="mb-3">
-        <h2 class="otherPostTitle">Altri posts</h2>
+        <h2 class="otherPostTitle otherPostTitleEffect">Altri posts</h2>
         <h4 class="subtititle-othersPosts">Sfoglia gli altri posts</h4>
     </div>
     <div class="row justify-content-center gap-3">
