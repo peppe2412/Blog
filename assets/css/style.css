@@ -26,16 +26,16 @@ body {
   animation: logo-effect 4s ease;
 } */
 
-.span-messages{
+.span-messages {
   margin-top: 10rem;
 }
 
-@keyframes logo-effect{
-  from{
+@keyframes logo-effect {
+  from {
     opacity: 0;
     transform: translateX(-100%);
   }
-  to{
+  to {
     opacity: 1;
     transform: translateX(0);
   }
@@ -92,12 +92,16 @@ body {
 }
 
 @keyframes effect-other-title {
-    from {width: 0;}
-    to{width: 100%;}
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
-.subtititle-othersPosts{
-    font-size: larger;
+.subtititle-othersPosts {
+  font-size: larger;
 }
 
 .card {
@@ -117,13 +121,50 @@ body {
   min-width: fit-content;
 }
 
-.card-others-posts:hover{
-    transition: 0.4s;
-    transform: scale(1.1);
+.card-others-posts:hover {
+  transition: 0.4s;
+  transform: scale(1.1);
 }
 
 .img_404 {
-  width: 300px;
+  width: 350px;
+}
+
+.link-error-page {
+  text-decoration: none;
+  padding: 5px 8px;
+  color: rgb(239, 144, 80);
+  border: 2px solid rgb(239, 144, 80);
+  border-radius: 5px;
+  position: relative;
+}
+
+.link-error-page::after {
+  content: "";
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  width: 0;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background-color: rgb(239, 144, 80);
+  transition: width 0.5s ease;
+}
+
+.link-error-page:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.link-error-page:hover {
+  color: white;
+}
+
+.link-error-page:not(:hover)::after {
+  right: 0;
+  left: auto;
+  width: 0;
 }
 
 footer {
