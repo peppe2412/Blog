@@ -89,7 +89,7 @@ $router->post('/posts/store', function () {
     $body = $_POST['body'];
 
     // Rimuove i tags non consentiti, lasciando solo quelli consentiti dall' allowed_tags
-    $allowed_tags = '<h1><h2><h3><h4><p><a><ul><ol><li><br><strong><em><b><i><u><img><blockquote><div>';
+    $allowed_tags = '<h1><h2><h3><h4><p><a><ul><ol><li><br><strong><em><b><i><u><blockquote><div>';
     $safe_body = strip_tags($body, $allowed_tags);
 
     if ($title == '' || $subtitle == '' || $safe_body == '') {
@@ -108,26 +108,26 @@ $router->post('/posts/store', function () {
     $file_name = null;
 
     // verifica se è stato caricato un file
-    if (!empty($_FILES['image']['name'])) {
-        // dettagli del file
-        $file_temporany = $_FILES['image']['tmp_name'];
-        $file_origin = basename($_FILES['image']['name']);
-        $exstension = strtolower(pathinfo($file_origin, PATHINFO_EXTENSION));
+    if (empty($_FILES['image']['name'])) {
+        $_SESSION['alert'] = 'Campi vuoti!';
+        header('Location: /posts/create');
+        exit;
+    }
 
-        $allowed = ['png', 'jpg', 'jpeg'];
+    // dettagli del file
+    $file_temporany = $_FILES['image']['tmp_name'];
+    $file_origin = basename($_FILES['image']['name']);
+    $exstension = strtolower(pathinfo($file_origin, PATHINFO_EXTENSION));
 
-        if (in_array($exstension, $allowed)) {
-            // creare un nome unico per evitare conflitti
-            $file_name = uniqid('post_') .  '.' . $exstension;
-            $filePath = $uploads_directory . '/' . $file_name;
+    $allowed = ['png', 'jpg', 'jpeg'];
 
-            if (!move_uploaded_file($file_temporany, $filePath)) {
-                $_SESSION['alert'] = 'Si è verificato un errore durante  il caricamento!';
-                header('Location: /posts/create');
-                exit;
-            }
-        } else {
-            $_SESSION['alert'] = 'Formato dell\'immagine non supportato';
+    if (in_array($exstension, $allowed)) {
+        // creare un nome unico per evitare conflitti
+        $file_name = uniqid('post_') .  '.' . $exstension;
+        $filePath = $uploads_directory . '/' . $file_name;
+
+        if (!move_uploaded_file($file_temporany, $filePath)) {
+            $_SESSION['alert'] = 'Si è verificato un errore durante  il caricamento!';
             header('Location: /posts/create');
             exit;
         }
