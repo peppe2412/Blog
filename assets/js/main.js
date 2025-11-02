@@ -13,7 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  let othersPostsTitle = document.querySelectorAll(".otherPostTitle");  
+  let span_messages_home = document.querySelectorAll(".span-message");
+
+  if (span_messages_home.length > 0) {
+    setTimeout(() => {
+      span_messages_home.forEach((span) => {
+        span.style.transition = "opacity 0.5s ease";
+        span.style.opacity = "0";
+
+        setTimeout(() => span.remove(), 2000)
+      });
+    }, 4000);
+  }
+
+  let othersPostsTitle = document.querySelectorAll(".otherPostTitle");
 
   let observer = new IntersectionObserver(
     (entries) => {
@@ -28,5 +41,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  othersPostsTitle.forEach((otherTitle)=> observer.observe(otherTitle))
+  othersPostsTitle.forEach((otherTitle) => observer.observe(otherTitle));
 });

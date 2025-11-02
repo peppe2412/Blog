@@ -28,9 +28,49 @@ body {
 
 .span-messages {
   margin-top: 10rem;
+  position: relative;
 }
 
-@keyframes logo-effect {
+.alert-home {
+  box-shadow: 1px 2px 4px 1px rgb(193, 193, 193);
+  width: max-content;
+  max-width: 500px;
+  padding: 15px 20px;
+  position: fixed;
+  top: 7rem;
+  left: 65rem;
+  background-color: #f1c9c9;
+  z-index: 1;
+}
+
+.success-home {
+  box-shadow: 1px 2px 4px 1px rgb(193, 193, 193);
+  width: max-content;
+  max-width: 100%;
+  padding: 15px 20px;
+  position: fixed;
+  top: 74px;
+  left: 70px;
+  background-color: #f2f4f0;
+  z-index: 1;
+}
+
+.content-span-home {
+  font-size: large;
+}
+
+@media (max-width: 768px) {
+  .alert-home {
+    max-width: 500px;
+    top: 67px;
+    left: 10px;
+  }
+  .content-span-home {
+    font-size: medium;
+  }
+}
+
+/* @keyframes logo-effect {
   from {
     opacity: 0;
     transform: translateX(-100%);
@@ -39,7 +79,7 @@ body {
     opacity: 1;
     transform: translateX(0);
   }
-}
+} */
 
 .post-main-container {
   padding-top: 50px;

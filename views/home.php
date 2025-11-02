@@ -19,10 +19,31 @@ ob_start();
 
 <section class="span-messages">
     <?php if ($alert): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($alert) ?></div>
+        <div class="alert-home span-message">
+            <p class="content-span-home m-0 p-2">
+                <span class="me-2">
+                    <svg width="26px" height="26px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#e20303">
+                        <path d="M12 7L12 12" stroke="#e20303" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M12 16.01L12.01 15.9989" stroke="#e20303" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M5 18L3.13036 4.91253C3.05646 4.39524 3.39389 3.91247 3.90398 3.79912L11.5661 2.09641C11.8519 2.03291 12.1481 2.03291 12.4339 2.09641L20.096 3.79912C20.6061 3.91247 20.9435 4.39524 20.8696 4.91252L19 18C18.9293 18.495 18.5 21.5 12 21.5C5.5 21.5 5.07071 18.495 5 18Z" stroke="#e20303" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+                <?= htmlspecialchars($alert) ?>
+            </p>
+        </div>
     <?php endif; ?>
     <?php if ($success): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+        <div class="success-home span-message">
+            <p class="content-span-home text-center m-0 py-2">
+                <span class="me-2">
+                    <svg width="26px" height="26px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#07e203">
+                        <path d="M7 12.5L10 15.5L17 8.5" stroke="#07e203" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#07e203" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+                <?= htmlspecialchars($success) ?>
+            </p>
+        </div>
     <?php endif; ?>
 </section>
 <!-- 
