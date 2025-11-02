@@ -38,7 +38,7 @@ $router->post('/login', function () {
 
         if ($result['error']) {
             // $message =  'errore: ' . $result['message'];
-            $_SESSION['login_error'] = $result['message'];
+            $_SESSION['login_error'] = 'Credenziali non valide';
             header('Location: /login');
             exit;
         } else {

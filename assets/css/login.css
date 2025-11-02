@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  background-color: rgb(29, 29, 29);
+}
+
+.message-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.alert-success {
+  background-color: rgb(47, 182, 27);
+  padding: 12px;
+  border-radius: 15px;
+  color: white;
+  font-size: larger;
+  gap: 10px;
+  display: flex;
+}
+
+.alert-danger {
+  background-color: rgb(206, 43, 43);
+  padding: 12px;
+  border-radius: 15px;
+  color: white;
+  font-size: larger;
+  gap: 10px;
+  display: flex;
+}
+
+.button-close {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.close-alert-box {
+  display: none;
+}
+
+.close-icon {
+  width: 20px;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.close-icon:hover{
+  background-color: rgba(173, 171, 171, 0.426);
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  align-items: center;
+}
+
+.login-box {
+  background-color: whitesmoke;
+  padding: 35px 50px;
+}
+
+.title-login {
+  text-align: center;
+  margin: 0;
+}
+
+.form-login {
+  margin-top: 15px;
+}
+
+.label-login {
+  display: block;
+  font-size: x-large;
+  margin-bottom: 0.3rem;
+}
+
+.input-login {
+  padding: 7px 20px;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  font-size: large;
+  border: 2px solid rgb(30, 27, 27);
+}
+
+.button-login-box {
+  margin-top: 10px;
+}
+
+.button-login {
+  width: 100%;
+  background-color: rgb(15, 136, 248);
+  border: none;
+  padding: 10px;
+  font-size: large;
+  color: rgb(238, 235, 235);
+  cursor: pointer;
+}
+
+.button-login:hover {
+  transition: 0.4s ease;
+  background-color: rgb(14, 118, 216);
+}
