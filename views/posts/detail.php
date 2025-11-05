@@ -1,7 +1,7 @@
 <?php
 // session_start();
 
-require_once __DIR__ . '/../../config/database.php';
+$connection = require __DIR__ . '/../../config/database.php';
 
 $stmt = $connection->query("SELECT * FROM posts ORDER BY id DESC");
 $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);

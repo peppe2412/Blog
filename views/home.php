@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../config/database.php';
 
-session_start();
+// session_start();
 
 $alert = $_SESSION['alert'] ?? null;
 unset($_SESSION['alert']);

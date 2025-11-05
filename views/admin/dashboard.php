@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 $success = $_SESSION['auth_success'] ?? null;
 unset($_SESSION['auth_success']);

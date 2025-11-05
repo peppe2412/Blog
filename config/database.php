@@ -22,6 +22,8 @@ try{
     $auth = new PHPAuth($connection, $config);
 
     // echo "Connesso al database: $db_name \n";
-} catch(Error $e){
+} catch(PDOException $e){
     echo "Errore: " . $e->getMessage();
 }
+
+return $connection;
