@@ -166,9 +166,35 @@ body {
   transform: scale(1.1);
 }
 
-
-.header-index-posts{
+.header-index-posts {
   padding-top: 120px;
+}
+
+.index-posts-title {
+  position: relative;
+  display: inline-flex;
+}
+
+.index-posts-title::after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  left: 0;
+  right: 0;
+  top: 2rem;
+  width: 0;
+  z-index: -1;
+  background-color: rgba(157, 246, 89, 0.626);
+  animation: effect-index-title 2s forwards;
+}
+
+@keyframes effect-index-title {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 .img_404 {

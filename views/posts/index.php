@@ -12,7 +12,7 @@ ob_start();
 <header class="container header-index-posts">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8 text-center">
-            <h1 class="display-2">Tutti i posts</h1>
+            <h1 class="display-2 index-posts-title">Tutti i posts</h1>
         </div>
     </div>
 </header>
