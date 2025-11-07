@@ -71,12 +71,12 @@ ob_start();
                 <div class="card mb-3 shadow">
                     <a href="/posts/detail/<?= urlencode($main['title']) ?>">
                         <div class="row g-0">
-                            <div class="col-12 col-lg-12">
+                            <div class="col-12 col-lg-6">
                                 <?php if (!empty($main['image'])): ?>
                                     <img src="/public/uploads/<?= htmlspecialchars($main['image']); ?>" class="img-fluid rounded-start" alt="...">
                                 <?php endif; ?>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-12 col-lg-4">
                                 <div class="card-body">
                                     <h3 class="card-title"><?= htmlspecialchars($main['title']) ?></h3>
                                     <h5 class="card-title"><?= htmlspecialchars($main['subtitle']) ?></h5>

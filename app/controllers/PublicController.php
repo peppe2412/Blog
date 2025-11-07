@@ -11,4 +11,8 @@ class PublicController{
         require_once __DIR__ . '/../../views/admin/dashboard.php';
     }
 
+    public function indexPosts(){
+        require_once __DIR__ . '/../../views/posts/index.php';
+    } 
+
 }

@@ -23,6 +23,7 @@ $router = new RouteCollector();
 $router->get('/', [PublicController::class, 'home']);
 $router->get('/posts/detail/{title}', [PostsController::class, 'detail']);
 $router->get('/dashboard', [PublicController::class, 'dashboard']);
+$router->get('/posts/index', [PublicController::class, 'indexPosts']);
 
 $router->get('/login', [AuthController::class, 'showLogin']);
 $router->post('/login', [AuthController::class, 'login']);

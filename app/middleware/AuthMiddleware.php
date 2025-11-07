@@ -1,6 +1,6 @@
-<!-- Rendere le pagine non accessibili per chi non è loggato -->
-
 <?php
+
+// Rendere le pagine non accessibili per chi non è loggato
 
 class AuthMiddleware{
     

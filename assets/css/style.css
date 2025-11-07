@@ -166,6 +166,11 @@ body {
   transform: scale(1.1);
 }
 
+
+.header-index-posts{
+  padding-top: 120px;
+}
+
 .img_404 {
   width: 350px;
 }
