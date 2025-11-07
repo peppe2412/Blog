@@ -8,8 +8,8 @@ class PostsController
 
     public function __construct()
     {
-       
-        
+
+
         $this->connection = require __DIR__ . '/../../config/database.php';
         $this->imageService = new ImageService();
         // var_dump($this->connection);
@@ -106,5 +106,76 @@ class PostsController
         }
 
         require_once __DIR__ . '/../../views/posts/detail.php';
+    }
+
+    public function edit($id)
+    {
+
+        $stmt = $this->connection->prepare("SELECT * FROM posts WHERE id = :id LIMIT 1");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $post = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$post) {
+            http_response_code(404);
+            $_SESSION['alert'] = 'Post non trovato!';
+            header('Location: /');
+            exit;
+        }
+
+        require_once __DIR__ . '/../../views/admin/posts/edit.php';
+    }
+
+    public function update($id)
+    {
+        $title = trim($_POST['title'] ?? '');
+        $subtitle = trim($_POST['subtitle'] ?? '');
+        $body = $_POST['body'] ?? '';
+
+        if (!$this->validatePost($title, $subtitle, $body)) {
+            $_SESSION['alert'] = 'Campi vuoti';
+            header('Location: /posts/edit/{id}');
+            exit;
+        }
+
+        $safe_body = $this->sanitazeBody($body);
+
+        // se viene caricata un'altra immagine
+        $file_name = null;
+        if (!empty($_FILES['image']['name'])) {
+            $file_name = $this->imageService->uploads($_FILES['image']);
+        }
+
+        $sqlUpdate = "UPDATE posts SET title = :title, subtitle = :subtitle, body = :body";
+
+        
+        if ($file_name) {
+            $sqlUpdate .= ", image = :image";
+        }
+        
+        $sqlUpdate .= " WHERE id = :id";
+        
+        $stmt = $this->connection->prepare($sqlUpdate);
+
+        $params = [
+            ':title' => $title,
+            ':subtitle' => $subtitle,
+            ':body' => $safe_body,
+            ':id' => $id
+        ];
+
+        if ($file_name) {
+            $params[':image'] = $file_name;
+        }
+
+        if ($stmt->execute($params)) {
+            $_SESSION['success'] = 'Apportate modifiche';
+            header('Location: /');
+            exit;
+        } else {
+            $_SESSION['alert'] = 'Si è verificato un errore';
+            header("Location: posts/edit/$id");
+            exit;
+        }
     }
 }

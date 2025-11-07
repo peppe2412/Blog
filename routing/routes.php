@@ -21,29 +21,40 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $router = new RouteCollector();
 
 $router->get('/', [PublicController::class, 'home']);
-$router->get('/posts/detail/{title}', [PostsController::class, 'detail']);
 $router->get('/dashboard', [PublicController::class, 'dashboard']);
 $router->get('/posts/index', [PublicController::class, 'indexPosts']);
+$router->get('/posts/detail/{title}', [PostsController::class, 'detail']);
+
 
 $router->get('/login', [AuthController::class, 'showLogin']);
 $router->post('/login', [AuthController::class, 'login']);
 $router->get('/logout', [AuthController::class, 'logout']);
 
 
-$router->get('/posts/create', function(){
+$router->get('/posts/create', function () {
 
     AuthMiddleware::handle();
     $controller = new PostsController();
     $controller->create();
-
 });
 
-$router->post('/posts/store', function(){
+$router->post('/posts/store', function () {
     AuthMiddleware::handle();
     $controller = new PostsController();
     $controller->store();
 });
 
+$router->get('/posts/edit/{id}', function ($id) {
+    AuthMiddleware::handle();
+    $controller = new PostsController();
+    $controller->edit($id);
+});
+
+$router->post('/posts/update/{id}', function ($id) {
+    AuthMiddleware::handle();
+    $controller = new PostsController();
+    $controller->update($id);
+});
 
 try {
     $dispatcher = new Dispatcher($router->getData());

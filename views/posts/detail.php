@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 
 $connection = require __DIR__ . '/../../config/database.php';
 
@@ -26,6 +26,11 @@ ob_start();
                     <p><?= $post['body'] ?></p>
                 </div>
                 <small>Creato il: <?= htmlspecialchars(date('d-m-Y', strtotime($post['created_at']))) ?></small>
+                <div>
+                    <?php if (isset($_SESSION['auth_hash'])): ?>
+                        <a class="btn btn-info" href="/posts/edit/<?= $post['id'] ?>">Modifica articolo</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>

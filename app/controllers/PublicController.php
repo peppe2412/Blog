@@ -14,5 +14,4 @@ class PublicController{
     public function indexPosts(){
         require_once __DIR__ . '/../../views/posts/index.php';
     } 
-
 }
